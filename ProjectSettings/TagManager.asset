@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Loot
+  - InteractPopUp
+  - NPC
   layers:
   - Default
   - TransparentFX

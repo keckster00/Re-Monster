@@ -11,14 +11,22 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] public float maxHealth = 10;
     [SerializeField] private GameObject lootPopUp;
     [SerializeField] private GameObject interactPopUp;
+    private int level;
+    private float xp;
+    private float xpNeeded;
     public float health;
     public Image healthBar;
     public TMP_Text healthText;
+    public Image xpBar;
+    public TMP_Text levelText;
 
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
+        level = 1;
+        xp = 0f;
+        xpNeeded = 10f;
     }
 
     public void Update()
@@ -26,7 +34,14 @@ public class PlayerHealth : MonoBehaviour
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
         healthText.text = health.ToString();
 
-        if (health <= 0)
+        xpBar.fillAmount = Mathf.Clamp(xp / xpNeeded, 0, 1);
+        levelText.text = level.ToString();
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+        else if (health <= 0)
         {
             Destroy(gameObject);
         }
@@ -65,6 +80,24 @@ public class PlayerHealth : MonoBehaviour
                 Instantiate(lootPopUp, coll.gameObject.transform.position, Quaternion.identity, transform);
                 GetComponent<PlayerController>().movspeed += 0.5f;
                 Debug.Log("venom");
+            }
+            if (coll.gameObject.GetComponent<SpriteRenderer>().sprite.name.Equals("SnakeXp"))
+            {
+                //update xp bar
+                //update xp number?
+                //if xp >= max for level -- level up -- bar at 0 or leftover xp
+
+                lootPopUp.GetComponent<TMP_Text>().text = "XP!";
+                Instantiate(lootPopUp, coll.gameObject.transform.position, Quaternion.identity, transform);
+                xp += 5;
+                if (xp >= xpNeeded)
+                {
+                    level++;
+                    xp = xp - xpNeeded;
+                    xpNeeded *= 1.5f;
+                    GetComponent<PlayerDamage>().AddDamage(0.5f);
+                    health += maxHealth / 3;
+                }
             }
             Destroy(coll.gameObject);
         }

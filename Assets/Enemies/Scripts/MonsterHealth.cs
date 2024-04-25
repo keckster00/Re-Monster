@@ -29,7 +29,7 @@ public class MonsterHealth : MonoBehaviour
 
     }
 
-    public void TakeDamage(int dmg)
+    public void TakeDamage(float dmg)
     {
         health -= dmg;
     }

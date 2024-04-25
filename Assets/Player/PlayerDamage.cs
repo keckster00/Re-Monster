@@ -7,7 +7,7 @@ public class PlayerDamage : MonoBehaviour
 {
 
     public TMP_Text damageText;
-    public int damage;
+    public float damage;
     public MonsterHealth monsterHealth;
     // Start is called before the first frame update
 
@@ -24,7 +24,7 @@ public class PlayerDamage : MonoBehaviour
         }
     }
 
-    public void AddDamage(int dmg)
+    public void AddDamage(float dmg)
     {
         damage += dmg;
     }
