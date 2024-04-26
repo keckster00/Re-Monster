@@ -8,7 +8,6 @@ public class PlayerDamage : MonoBehaviour
 
     public TMP_Text damageText;
     public float damage;
-    public MonsterHealth monsterHealth;
     // Start is called before the first frame update
 
     public void Update()
@@ -27,5 +26,13 @@ public class PlayerDamage : MonoBehaviour
     public void AddDamage(float dmg)
     {
         damage += dmg;
+    }
+
+    public void Attack()
+    {
+        //trigger attack animation
+        Animator animator = gameObject.GetComponentInChildren<Animator>();
+        animator.SetBool("axeAttack", true);
+        Debug.Log("ATTACK!!");
     }
 }

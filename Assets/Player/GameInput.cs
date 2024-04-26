@@ -19,11 +19,11 @@ public class GameInput : MonoBehaviour
         Animator playerAnimator = animator;
 
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             playerSr.flipX = true;
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             playerSr.flipX = false;
         }
@@ -39,4 +39,5 @@ public class GameInput : MonoBehaviour
 
         return inputVector;
     }
+
 }
