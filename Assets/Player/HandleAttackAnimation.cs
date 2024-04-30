@@ -6,6 +6,7 @@ public class HandleAttackAnimation : MonoBehaviour
 {
     // Reference to the Animator component
     private Animator animator;
+    [SerializeField] private GameObject axeAttack;
 
     private void Start()
     {
@@ -18,5 +19,6 @@ public class HandleAttackAnimation : MonoBehaviour
     {
         // Set the AttackTrigger parameter to false
         animator.SetBool("axeAttack", false);
+        axeAttack.GetComponent<AxeAttack>().FinishAttack();
     }
 }
