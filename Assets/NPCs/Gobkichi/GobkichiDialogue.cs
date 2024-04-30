@@ -29,7 +29,7 @@ public class Dialogue : MonoBehaviour
             }
             Destroy(GameObject.FindGameObjectWithTag("InteractPopUp"));
         }
-        if (Input.GetKeyDown(KeyCode.Space) && dialogueText.text == dialogue[index])
+        if (Input.GetKeyDown(KeyCode.E) && dialogueText.text == dialogue[index])
         {
             NextLine();
         }
