@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void PlayerTakeDamage(int dmg)
+    public void PlayerTakeDamage(float dmg)
     {
         health -= dmg;
     }
