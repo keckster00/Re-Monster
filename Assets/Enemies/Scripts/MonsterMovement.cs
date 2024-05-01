@@ -25,8 +25,16 @@ public class MonsterMovement : MonoBehaviour
 
         if (isChasing)
         {
-            //refactor to be like playermovement
-            transform.position += (playerTransform.position - transform.position) * movspeed * Time.deltaTime;
+            gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position += (playerTransform.position - transform.position) * movspeed * Time.deltaTime);
+            Vector3 direction = playerTransform.position - transform.position;
+            if (direction.x < 0)
+            {
+                gameObject.GetComponentInChildren<SpriteRenderer>().flipX = false;
+            }
+            else
+            {
+                gameObject.GetComponentInChildren<SpriteRenderer>().flipX = true;
+            }
         }
     }
 }
