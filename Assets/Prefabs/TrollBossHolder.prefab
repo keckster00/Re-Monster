@@ -305,6 +305,7 @@ MonoBehaviour:
   movspeed: 0.75
   playerTransform: {fileID: 0}
   chaseDistance: 10
+  defaultDirection: 1
 --- !u!114 &242424581048330923
 MonoBehaviour:
   m_ObjectHideFlags: 0
