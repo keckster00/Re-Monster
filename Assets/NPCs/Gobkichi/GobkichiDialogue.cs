@@ -11,6 +11,7 @@ public class Dialogue : MonoBehaviour
     private int index = 0;
     public float wordSpeed;
     private bool isClose;
+    private bool isTyping;
 
     // Update is called once per frame
     void Update()
@@ -26,10 +27,11 @@ public class Dialogue : MonoBehaviour
             {
                 dialoguePanel.SetActive(true);
                 StartCoroutine(Typing());
+                isClose = false;
             }
             Destroy(GameObject.FindGameObjectWithTag("InteractPopUp"));
         }
-        if (Input.GetKeyDown(KeyCode.E) && dialogueText.text == dialogue[index])
+        if (Input.GetKeyDown(KeyCode.E) && dialogueText.text == dialogue[index] && !isTyping)
         {
             NextLine();
         }
@@ -37,11 +39,14 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator Typing()
     {
+        isTyping = true;
         foreach (char letter in dialogue[index].ToCharArray())
         {
             dialogueText.text += letter;
             yield return new WaitForSeconds(wordSpeed);
+
         }
+        isTyping = false;
     }
 
     public void NextLine()
