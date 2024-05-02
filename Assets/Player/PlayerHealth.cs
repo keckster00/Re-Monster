@@ -49,7 +49,7 @@ public class PlayerHealth : MonoBehaviour
             isDead = true;
             //open popup screen
             gameOverScreen.OnDeath();
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

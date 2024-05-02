@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -43,12 +44,17 @@ public class MonsterMovement : MonoBehaviour
     {
         // Assuming your sprite renderer is attached to the same GameObject
         SpriteRenderer spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        Collider2D collider = gameObject.GetComponent<Collider2D>();
 
         // Check if the default direction is left and the player is moving right
         if (defaultDirection == DefaultDirection.Left && direction.x > 0)
         {
             // Flip the sprite to face right
             spriteRenderer.flipX = true;
+            if (collider.offset.x > 0)
+            {
+                collider.offset = new Vector2(collider.offset.x * -1, collider.offset.y);
+            }
         }
         // Check if the default direction is right and the player is moving left
         else if (defaultDirection == DefaultDirection.Right && direction.x > 0)
@@ -61,6 +67,10 @@ public class MonsterMovement : MonoBehaviour
         {
             // Flip the sprite based on the default direction
             spriteRenderer.flipX = defaultDirection == DefaultDirection.Left ? false : true;
+            if (collider.offset.x < 0)
+            {
+                collider.offset = new Vector2(collider.offset.x * -1, collider.offset.y);
+            }
         }
     }
 }
