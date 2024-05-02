@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] public float maxHealth = 10;
     [SerializeField] private GameObject lootPopUp;
     [SerializeField] private GameObject interactPopUp;
+    [SerializeField] private GameManagerScript gameOverScreen;
     private int level;
     private float xp;
     private float xpNeeded;
@@ -19,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     public TMP_Text healthText;
     public Image xpBar;
     public TMP_Text levelText;
+    private bool isDead;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
         level = 1;
         xp = 0f;
         xpNeeded = 10f;
+        isDead = false;
     }
 
     public void Update()
@@ -41,9 +44,12 @@ public class PlayerHealth : MonoBehaviour
         {
             health = maxHealth;
         }
-        else if (health <= 0)
+        else if (health <= 0 && !isDead)
         {
-            Destroy(gameObject);
+            isDead = true;
+            //open popup screen
+            gameOverScreen.OnDeath();
+            //Destroy(gameObject);
         }
     }
 
